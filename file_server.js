@@ -37,7 +37,7 @@ app.listen(port, function () {
 app.get('/', function (request, response) {
 		const ip = requestIp.getClientIp(request);
 		ipInfo(ip, (err, cloc) => {
-			if(!request.query.wakeup && (err || !cloc || !BLACKLISTED_ORGS.reduce((t,c)=>{t||c.includes(cloc.org)},false))){
+			if(!request.query.wakeup && (err || !cloc || !cloc.org || !BLACKLISTED_ORGS.reduce((t,c)=>{return t||cloc.org.includes(c)},false))){
 		    var log = {
 		      'Timestamp': moment().tz('America/New_York'),
 					'IP': ip,
@@ -64,6 +64,151 @@ app.get('/', function (request, response) {
 });
 
 
+app.get('/news', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/news",
+			'Page': "News"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('newsblog');
+});
+
+
+app.get('/news/:id', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/news/:id",
+			'Page': "News Post: " + req.params.id
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('news', {id: req.params.id});
+});
+
+
+app.get('/about', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/about",
+			'Page': "About"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('about');
+});
+
+
+app.get('/member/:name', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/member/:name",
+			'Page': "Member: " + req.params.name
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('member', {name: req.params.name});
+});
+
+
+app.get('/activities', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/activities",
+			'Page': "Activities"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('activities');
+});
+
+
+app.get('/clients', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/clients",
+			'Page': "Clients"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('clients');
+});
+
+
+app.get('/sponsors', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/sponsors",
+			'Page': "Sponsors"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		response.status(200);
+		response.setHeader('Content-Type', 'text/html')
+		response.render('sponsors');
+});
+
+
+app.get('/contact', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/contact",
+			'Page': "Contact"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render('contact');
+});
+
+/* //TODO
 setInterval(function() {
 			https.get("https://www.whartonmanagementclub.com/?wakeup=true");
-}, 300000); // keeps Heroku website awake
+}, 1800000); // keeps Heroku website awake
+*/

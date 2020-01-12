@@ -261,8 +261,9 @@
         // Brand Logo Slider JS
         $(".brand-logo-content").slick({
             slidesToShow: 4,
-            arrows: false,
+            arrows: true,
             autoplay: true,
+            pauseOnHover: false,
             responsive: [
                 {
                     breakpoint: 992,
