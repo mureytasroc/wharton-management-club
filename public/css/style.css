@@ -4034,7 +4034,7 @@ only screen and (min-width: 1200px) {
     padding: 0;
 }
 
-@media only screen and (min-width:400px){
+@media only screen and (min-width:350px){
 .client-image, .client-image-single{
   display: block;
     top: 0;

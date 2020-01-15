@@ -207,8 +207,7 @@ app.get('/contact', function (request, response) {
     response.render('contact');
 });
 
-/* //TODO
+
 setInterval(function() {
 			https.get("https://www.whartonmanagementclub.com/?wakeup=true");
 }, 1800000); // keeps Heroku website awake
-*/
