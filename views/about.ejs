@@ -100,6 +100,7 @@ The AMP team provides pro bono consulting services for companies in West Philade
                         <p style="padding-top:10px">Wharton Management Club is compromised of a diverse group of talented and driven individuals who share an interest in management and related subjects. Through close interaction within and between committees, WMC members get to know each other very well, and our community is very close-knit as a result.  We frequently hold of all-club social events and study breaks to maintain these relationships.  Additionally, we host speaker/discussion sessions, networking events, and professor luncheons to strengthen our community and enrich our members with knowledge and experience.
 
 </p>
+<a href="/members" class="btn-about">MEMBERS <i class="mdi mdi-chevron-double-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -138,14 +139,37 @@ The AMP team provides pro bono consulting services for companies in West Philade
                     <div class="col-12">
                         <div class="about-content about-content--2">
 
-                            <h4>Members</h2>
+                            <h4>Executive Board Members</h2><br>
+                              <p>Meet our executive team!</p><br>
+                              <img src="/images/exec_team.jpg" alt="exec team" style="max-width: 80%; height: auto; width: auto;"><br><br><br><br>
 
-                            <p style="padding-top:10px">Members directory coming soon</p>
-                        </div>
+                              <div class="row">
+
+                              <% if(locals.bmembers){ %>
+
+                                <% for (var i=0; i < bmembers.length; i++){ %>
+                                  <% if(i%4==0 && i!= 0){ %> <!-- what if not 4 wide? -->
+                        </div><br><div class="row">
+                                    <% } %>
+                              <div class="col-xs-12 col-s-12 col-lg-3 col-xl-3 col-md-3" align="center">
+                                <div class="card pt-10">
+                                  <img class="memberimage" src="<%- bmembers[i].photo %>" alt="<%- bmembers[i].name %>" height="200">
+                                  <div class="contain">
+                                    <h4 class="membername"><%- bmembers[i].name %></h4>
+                                    <% if(bmembers[i].role != ""){%><p class="membertitle"><%= bmembers[i].role %></p><% } %>
+                                    <p class="memberschoolyr"><%= bmembers[i].gradclass %></p>
+                                    <p><a href="/member/<%- bmembers[i].name.toLowerCase().replace(/ /g,"") %>" class="memberbutton">More</a></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <% } %>
+                              <% } %>
+                        </div><br>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
         <!--== End About Area Wrapper ==-->
 
 

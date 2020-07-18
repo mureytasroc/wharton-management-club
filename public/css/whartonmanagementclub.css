@@ -5,3 +5,135 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* Add some shadows to create a card effect */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+}
+
+.card-member {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+}
+
+/* Some left and right padding inside the container */
+
+.contain {
+  padding: 0 16px;
+}
+
+.contain-member{
+  padding: 0 16px;
+}
+
+/* Clear floats */
+.contain::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.membertitle {
+  color: grey;
+  padding-bottom: 0px;
+  margin-bottom:0px
+}
+
+.membername {
+  margin-bottom:0px;
+}
+
+
+.pb-10 {
+  padding-bottom: 10px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+img {
+    image-orientation: from-image;
+}
+
+a.memberbutton:hover{color:#EA4231;}
+
+a.memberbutton{
+  display: inline-block;
+  padding:0.1em 0.6em;
+  margin:0 0em 1em 0;
+  border-radius:0.2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#080B1A;
+  background-color: #E7E7E7;
+  text-align:center;
+  transition: all 0.2s;
+
+  margin-top:10px;
+}
+
+@media all and (max-width:30em){
+a.memberbutton{
+  display:block;
+  margin:0.2em auto;
+ }
+}
+
+.memberschoolyr{
+  padding-bottom: 0px;
+  margin-bottom:0px;
+  color:black;
+  font-size:12;
+}
+
+.padding-sm{
+  padding:30px !important;
+}
+
+.margin-md-vert{
+  margin-top:30px !important;
+  margin-bottom:30px !important;
+}
+
+.memberimage{
+  max-width: 90%;
+  width: auto;
+  height: auto;
+}
+
+.memberimagesingle{
+  max-width: 90%;
+  max-width: 500px;
+  width: auto;
+  height: auto;
+}
+
+.memberblurb{
+  background-color: #F5F5F5;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btn-linkedin {
+	  background: #0E76A8;
+	  border-radius: 0;
+	  color: #fff;
+	  border-width: 1px;
+	  border-style: solid;
+	  border-color: #084461;
+	}
+	.btn-linkedin:link, .btn-linkedin:visited {
+	  color: #fff;
+	}
+	.btn-linkedin:active, .btn-linkedin:hover {
+	  background: #084461;
+	  color: #fff;
+	}

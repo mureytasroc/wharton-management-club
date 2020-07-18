@@ -17,6 +17,8 @@ var Members = require(__dirname + '/models/Members')
 
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
+app.use('/member', express.static('public'));
+app.use('/member', favicon(__dirname + '/public/images/favicon.png'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(favicon(__dirname + '/public/images/favicon.png'));
@@ -112,9 +114,73 @@ app.get('/about', function (request, response) {
     console.log(log);
 		Admin.log(log, function(){});
 
-		response.status(200);
-		response.setHeader('Content-Type', 'text/html')
-		response.render('about');
+		Admin.getBoardMembers(function(bmembers){
+			bmembers.map(function(m){
+				var school = m.school.replace(/ /g,"").replace(/,/g,"");
+				var year = "'"+m.gradyear.slice(-2);
+				var gradclass="";
+				if(school.includes("Wharton")){gradclass+=("W"+year); school.replace("Wharton","");}
+				if(school.includes("SAS")){gradclass+=("C"+year); school.replace("SAS","");}
+				if(school.includes("SEAS")){gradclass+=("E"+year); school.replace("SEAS","");}
+				if(school!="" && gradclass==""){gradclass=year;}
+				var newM=m;
+				newM.gradclass=gradclass;
+				return newM;
+			})
+			response.status(200);
+			response.setHeader('Content-Type', 'text/html')
+			response.render('about', {bmembers: bmembers});
+		})
+
+});
+
+app.get('/members', function (request, response) {
+		const ip = requestIp.getClientIp(request);
+		var log = {
+			'Timestamp': moment().tz('America/New_York'),
+			'IP': ip,
+			'Verb': "GET",
+      'Route': "/members",
+			'Page': "Members"
+    }
+    console.log(log);
+		Admin.log(log, function(){});
+
+		Admin.getMembers(function(members){
+			members.map(function(m){
+				var school = m.school.replace(/ /g,"").replace(/,/g,"");
+				var year = "'"+m.gradyear.slice(-2);
+				var gradclass="";
+				if(school.includes("Wharton")){gradclass+=("W"+year); school.replace("Wharton","");}
+				if(school.includes("SAS")){gradclass+=("C"+year); school.replace("SAS","");}
+				if(school.includes("SEAS")){gradclass+=("E"+year); school.replace("SEAS","");}
+				if(school!="" && gradclass==""){gradclass=year;}
+				var newM=m;
+				newM.gradclass=gradclass;
+				teams=newM.teams.split(',')
+				teamsenglish = ''
+				if (teams.length == 0) {
+					teamsenglish = 'none'
+				} else if (teams.length == 1) {
+					teamsenglish = teams[0]
+				} else {
+					teamsenglish = teams[0]
+					for (var i=1; i < teams.length; i++) {
+						if (i == teams.length - 1) {
+							teamsenglish += ' and ' + teams[i]
+						} else {
+							teamsenglish += ', ' + teams[i]
+						}
+					}
+				}
+				newM.teamsenglish = teamsenglish
+				return newM;
+			})
+			response.status(200);
+			response.setHeader('Content-Type', 'text/html')
+			response.render('members', {members: members});
+		})
+
 });
 
 
@@ -125,14 +191,42 @@ app.get('/member/:name', function (request, response) {
 			'IP': ip,
 			'Verb': "GET",
       'Route': "/member/:name",
-			'Page': "Member: " + req.params.name
+			'Page': "Member: " + request.params.name
     }
     console.log(log);
 		Admin.log(log, function(){});
 
-		response.status(200);
-		response.setHeader('Content-Type', 'text/html')
-		response.render('member', {name: req.params.name});
+		Admin.getMember(request.params.name, function(m){
+				var school = m.school.replace(/ /g,"").replace(/,/g,"");
+				var year = "'"+m.gradyear.slice(-2);
+				var gradclass="";
+				if(school.includes("Wharton")){gradclass+=("W"+year); school.replace("Wharton","");}
+				if(school.includes("SAS")){gradclass+=("C"+year); school.replace("SAS","");}
+				if(school.includes("SEAS")){gradclass+=("E"+year); school.replace("SEAS","");}
+				if(school!="" && gradclass==""){gradclass=year;}
+				var member=m;
+				member.gradclass=gradclass;
+				teams=member.teams.split(',')
+				teamsenglish = ''
+				if (teams.length == 0) {
+					teamsenglish = 'none'
+				} else if (teams.length == 1) {
+					teamsenglish = teams[0]
+				} else {
+					teamsenglish = teams[0]
+					for (var i=1; i < teams.length; i++) {
+						if (i == teams.length - 1) {
+							teamsenglish += ' and ' + teams[i]
+						} else {
+							teamsenglish += ', ' + teams[i]
+						}
+					}
+				}
+				member.teamsenglish = teamsenglish
+				response.status(200);
+				response.setHeader('Content-Type', 'text/html')
+				response.render('member', {member: member});
+		})
 });
 
 

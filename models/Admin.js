@@ -6,8 +6,6 @@ var moment = require('moment-timezone');
 moment().format();
 
 const membersFP = __dirname +'/members.csv'
-const roundtablesFP = __dirname +'/roundtables.csv'
-const speakersFP = __dirname +'/speakers.csv'
 const photosFP = __dirname +'/photos.csv'
 
 const csv=require('csvtojson')
@@ -46,19 +44,19 @@ exports.getMembers = function (callback) {
 	})
 }
 
-exports.getRoundtables = function (callback) {
+exports.getMember = function (name, callback) {
 	csv()
-	.fromFile(roundtablesFP)
+	.fromFile(membersFP)
 	.then((jsonObj)=>{
-	    callback(jsonObj)
+	    callback(jsonObj.find(member => member.name.toLowerCase().replace(/ /g, "") === name))
 	})
 }
 
-exports.getSpeakers = function (callback) {
+exports.getBoardMembers = function (callback) {
 	csv()
-	.fromFile(speakersFP)
+	.fromFile(membersFP)
 	.then((jsonObj)=>{
-	    callback(jsonObj)
+			callback(jsonObj.filter(member => 'yes' === member['board']))
 	})
 }
 

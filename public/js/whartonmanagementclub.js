@@ -1,9 +1,9 @@
 titleToId = {
+  'Member': 'memberslink',
   'Wharton Management Club': 'homelink',
   'News': 'newslink',
   'News Post': 'newslink',
   'About': 'aboutlink',
-  'Member': 'aboutlink',
   'Activities': 'activitieslink',
   'Clients': 'clientslink',
   'Sponsors': 'sponsorslink',

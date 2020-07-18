@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<% include global/head %>
+
+<title>Members</title>
+
+<body>
+
+    <% include global/header %>
+
+    <div class="about-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="about-content about-content--2">
+
+                        <h4>Members</h2>
+
+                        <p style="padding-top:10px">Besides the hundreds of students on our mailing list, we have an exclusively selected group of <%= members.length %> committee members.  Meet them below!</p>
+
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Our Team starts -->
+
+
+  <div class="row">
+
+  <% if(locals.members){ %>
+
+    <% for (var i=0; i < members.length; i++){ %>
+      <% if(i%4==0 && i!= 0){ %> <!-- what if not 4 wide? -->
+</div><br><div class="row">
+        <% } %>
+  <div class="col-xs-12 col-s-12 col-lg-3 col-xl-3 col-md-3" align="center">
+    <div class="card pt-10">
+      <img class="memberimage" src="<%- members[i].photo %>" alt="<%- members[i].name %>" height="200">
+      <div class="contain">
+        <h4 class="membername"><%- members[i].name %></h4>
+        <% if(members[i].board === "yes"){%><p class="membertitle"><%= members[i].role %></p><% } else { %> <p class="membertitle"><%= members[i].teams %> <% } %>
+        <p class="memberschoolyr"><%= members[i].gradclass %></p>
+        <p><a href="/member/<%- members[i].name.toLowerCase().replace(/ /g,"") %>" class="memberbutton">More</a></p>
+      </div>
+    </div>
+  </div>
+  <% } %>
+  <% } %>
+
+
+
+
+  </div>
+  <!-- /.row -->
+
+      <!-- Our team ends -->
+
+  				</div>
+
+          <br><br>
+
+
+
+
+    <% include global/footer %>
+
+    <% include global/foot %>
+
+</body>
+
+</html>
