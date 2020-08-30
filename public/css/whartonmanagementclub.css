@@ -137,3 +137,57 @@ a.memberbutton{
 	  background: #084461;
 	  color: #fff;
 	}
+
+  .popup {
+    width: 400px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    background: #f3f3f3;
+    border-radius: 7px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    padding: 10px 35px 10px 60px;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  @media (max-width: 800px) {
+    .popup {
+      width: 330px;
+    }
+  }
+
+  .popup .close {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+    content: 'x'; // here is your X(cross) sign.
+    color: #fff;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+  }
+
+  .popup img {
+    float: left;
+    margin-right: 10px;
+    margin-left: -50px;
+    width: 75px;
+    height: auto;
+  }
+
+  .popup span {
+    height:100%;
+    font-weight:50;
+    font-size: 12px;
+    padding-left: 25px;
+  }
+
+  @media (max-width: 800px) {
+    .popup span {
+      padding-left: 15px;
+    }
+  }

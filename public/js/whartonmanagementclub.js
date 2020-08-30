@@ -12,3 +12,5 @@ titleToId = {
 $('#'+titleToId[Object.keys(titleToId).reduce((e, r)=>{
   if(document.title.includes(e)){ return e; } else{ return r; }
 }, 'none')]).css('color','#EA4231')
+
+setTimeout(function(){ $.jsdvPopup({}); }, 500)
