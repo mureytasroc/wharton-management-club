@@ -134,6 +134,14 @@ app.get('/about', function (request, response) {
 
 });
 
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function()
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}
+
 app.get('/members', function (request, response) {
 		const ip = requestIp.getClientIp(request);
 		var log = {
@@ -162,14 +170,14 @@ app.get('/members', function (request, response) {
 				if (teams.length == 0) {
 					teamsenglish = 'none'
 				} else if (teams.length == 1) {
-					teamsenglish = teams[0]
+					teamsenglish = teams[0].trim()
 				} else {
-					teamsenglish = teams[0]
+					teamsenglish = teams[0].trim()
 					for (var i=1; i < teams.length; i++) {
 						if (i == teams.length - 1) {
-							teamsenglish += ' and ' + teams[i]
+							teamsenglish += ' and ' + teams[i].trim()
 						} else {
-							teamsenglish += ', ' + teams[i]
+							teamsenglish += ', ' + teams[i].trim()
 						}
 					}
 				}
