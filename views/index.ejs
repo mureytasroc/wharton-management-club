@@ -368,51 +368,30 @@
     <!--== End Blog Area Wrapper ==-->
 
     <!--== Start Brand Logo Area Wrapper ==-->
+    <% if(locals.clients){ %>
+      <% if(locals.sponsors){ %>
     <div class="brand-logo-area bg-offwhite sm-top" style="padding: 50px 0px; margin:0px;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="brand-logo-content slick-row-20">
+                      <% for (var i=0; i < sponsors.length; i++){ %>
                         <div class="brand-logo-item">
-                            <a target=”_blank” href="https://www.insightpartners.com/"><img src="images/brand-logo/insight.png" alt="Businex-Logo" /></a>
+                            <a target=”_blank” rel="noopener noreferrer" href="<%- sponsors[i].url %>"><img src="<%- sponsors[i].photo %>" /></a>
                         </div>
+                      <% } %>
+                      <% for (var i=0; i < clients.length; i++){ %>
                         <div class="brand-logo-item">
-                            <a target=”_blank” href="https://www.kantar.com/"><img src="images/brand-logo/kantar.png" alt="Businex-Logo" /></a>
+                            <a target=”_blank” rel="noopener noreferrer" href="<%- clients[i].url %>"><img src="<%- clients[i].photo %>" /></a>
                         </div>
-                        <div class="brand-logo-item">
-                            <a target=”_blank” href="http://www.stevesprinceofsteaks.com/"><img src="images/brand-logo/steves.png" alt="Businex-Logo" /></a>
-                        </div>
-
-                        <div class="brand-logo-item">
-                            <a target=”_blank” href="http://icenyicecream.com/"><img src="images/brand-logo/iceny.png" alt="Businex-Logo" /></a>
-                        </div>
-
-                        <div class="brand-logo-item">
-                            <a target=”_blank” href="https://www.yourlaundrychute.com/"><img src="images/brand-logo/chute.png" alt="Businex-Logo" /></a>
-                        </div>
-
-                        <div class="brand-logo-item">
-                            <a target=”_blank” href="https://www.bigsnyc.org/"><img src="images/brand-logo/bbbsnyc.png" alt="Businex-Logo" /></a>
-                        </div>
-
-                        <div class="brand-logo-item">
-                            <a target=”_blank” href="https://www.americandream.com/"><img style="height:30px; margin:11.5px 0px" src="images/brand-logo/americandream.png" alt="Businex-Logo" /></a>
-                        </div>
-
-                        <!--
-                        <div class="brand-logo-item">
-                            <a href="#"><img src="images/brand-logo/03.png" alt="Businex-Logo" /></a>
-                        </div>
-
-                        <div class="brand-logo-item">
-                            <a href="#"><img src="images/brand-logo/01.png" alt="Businex-Logo" /></a>
-                        </div>
-                        -->
+                      <% } %>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <% } %>
+  <% } %>
     <!--== End Brand Logo Area Wrapper ==-->
 
 

@@ -4006,7 +4006,7 @@ only screen and (min-width: 1200px) {
 
 
 .service-details-content {
-  padding: 30px; text-align: center; width:90%; height:300px; background:#F8F9FC;
+  padding: 30px; text-align: center; width:90%; background:#F8F9FC;
 }
 
 @media only screen and (max-width: 992px) {

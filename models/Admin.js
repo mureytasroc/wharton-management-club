@@ -8,6 +8,7 @@ moment().format();
 const membersFP = __dirname +'/members.csv'
 const photosFP = __dirname +'/photos.csv'
 const clientsFP = __dirname +'/clients.csv'
+const sponsorsFP = __dirname +'/sponsors.csv'
 
 const csv=require('csvtojson')
 
@@ -47,6 +48,13 @@ exports.getMembers = function (callback) {
 exports.getClients = function (callback) {
 	csv()
 	.fromFile(clientsFP)
+	.then((jsonObj)=>{
+			callback(jsonObj)
+	})
+}
+exports.getSponsors = function (callback) {
+	csv()
+	.fromFile(sponsorsFP)
 	.then((jsonObj)=>{
 			callback(jsonObj)
 	})

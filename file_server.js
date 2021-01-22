@@ -61,7 +61,11 @@ app.get('/', function (request, response) {
 		    console.log(log);
 			}
 
-			response.render('index')
+			Admin.getClients(function(clients){
+				Admin.getSponsors(function(sponsors){
+					response.render('index', {clients: clients, sponsors: sponsors});
+				});
+			});
 		})
 });
 
@@ -288,9 +292,11 @@ app.get('/sponsors', function (request, response) {
     console.log(log);
 		Admin.log(log, function(){});
 
-		response.status(200);
-		response.setHeader('Content-Type', 'text/html')
-		response.render('sponsors');
+		Admin.getSponsors(function(sponsors){
+			response.status(200);
+			response.setHeader('Content-Type', 'text/html')
+			response.render('sponsors', {sponsors: sponsors});
+		});
 });
 
 

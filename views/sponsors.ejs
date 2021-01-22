@@ -35,16 +35,20 @@
         <div class="service-details-wrapper sm-top-2">
             <div class="container">
                 <div class="row">
+                    <% if(locals.sponsors){ %>
                     <div class="col-lg-8">
                         <div class="service-details-content">
                           <h3 class="sidebar-heading">Current Sponsors</h3>
-                          <div class="container sponsor-image-container">
-                            <div class="row">
-                                <div class="col-6 sponsor-image-col"><a target="_blank" href="https://www.kantar.com/"><img class="sponsor-image" src="images/brand-logo/kantar.png" ></a></div><div class="col-6 sponsor-image-col"><a target="_blank" href="https://www.insightpartners.com/"><img class="sponsor-image" src="images/brand-logo/insight.png"></a></div>
+                          <div>
+                            <div class="grid" data-masonry='{ "columnWidth": 200, "itemSelector": ".grid-item", "gutter": 10, "fitWidth": true }'>
+                              <% for (var i=0; i < sponsors.length; i++){ %>
+                              <div class="grid-item"><a target="_blank" rel="noopener noreferrer" href="<%- sponsors[i].url %>"><img src="<%- sponsors[i].photo %>"></a></div>
+                              <% } %>
                             </div>
                           </div>
                         </div>
                     </div>
+                    <% } %>
 
                     <div class="col-lg-4 mtn-40">
                         <div class="sidebar-wrap mt-sm-90 mt-md-100">
