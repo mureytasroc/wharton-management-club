@@ -35,24 +35,20 @@
       <div class="service-details-wrapper sm-top-2">
           <div class="container">
               <div class="row">
+                <% if(locals.clients){ %>
                   <div class="col-lg-8">
                       <div class="service-details-content-client">
-                        <h3 class="sidebar-heading">Current Clients</h3>
-                        <div class="container sponsor-image-container">
-                          <div class="row" style="padding:30px 0px 0px;">
-                              <div class="col-6 col-xs-12 client-image-col"><img style="cursor:pointer;" onclick="window.open('https://www.getinstahub.com/', '_blank');" class="client-image" src="images/brand-logo/instahub.png" ></div>
-                              <div class="mobile-client-padding"><br><br></div>
-                              <div class="col-6 col-xs-12 client-image-col"><img style="cursor:pointer;" onclick="window.open('https://fulphil.org/', '_blank');" class="client-image" src="images/brand-logo/fulphil.png"></div>
-                              <div class="mobile-client-padding"><br><br><br></div>
-                          </div>
-                          <div class="row" style="padding:0;">
-                              <div class="col-6 col-xs-12 client-image-col"><img style="cursor:pointer;" onclick="window.open('https://www.altruifoundation.org/', '_blank');" class="client-image" src="images/brand-logo/altrui.png"></div>
-                              <div class="mobile-client-padding"><br><br><br></div>
-                              <div class="col-6 col-xs-12 client-image-col"><img style="cursor:pointer;" onclick="window.open('https://www.independencebigs.org/', '_blank');" class="client-image" src="images/brand-logo/bbbs.png" ></div>
+                        <h3 class="sidebar-heading">Some of Our Previous Clients</h3>
+                        <div>
+                          <div class="grid" data-masonry='{ "columnWidth": 200, "itemSelector": ".grid-item", "gutter": 10, "fitWidth": true }'>
+                            <% for (var i=0; i < clients.length; i++){ %>
+                            <div class="grid-item"><a target="_blank" rel="noopener noreferrer" href="<%- clients[i].url %>"><img src="<%- clients[i].photo %>"></a></div>
+                            <% } %>
                           </div>
                         </div>
                       </div>
                   </div>
+                <% } %>
 
                   <div class="col-lg-4 mtn-40">
                       <div class="sidebar-wrap mt-sm-90 mt-md-100">
@@ -118,7 +114,7 @@
 
           <div class="how-we-works-wrap mt-50 mt-sm-35">
               <h4>Contact</h4>
-              <p>For more information or to inquire about becoming a client, contact VP of AMP, Julia Ellis at <a href="mailto:jsellis@wharton.upenn.edu">jsellis@wharton.upenn.edu</a>.
+              <p>For more information or to inquire about becoming a client, contact VP of Corporate Relations, <span id="vp_relations_name"></span> at <a id="vp_relations_email" href=""></a>.
               </div>
           <!--
           <div class="how-we-works-content">

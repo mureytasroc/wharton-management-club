@@ -268,9 +268,11 @@ app.get('/clients', function (request, response) {
     console.log(log);
 		Admin.log(log, function(){});
 
-		response.status(200);
-		response.setHeader('Content-Type', 'text/html')
-		response.render('clients');
+		Admin.getClients(function(clients){
+			response.status(200);
+			response.setHeader('Content-Type', 'text/html')
+			response.render('clients', {clients: clients});
+		});
 });
 
 

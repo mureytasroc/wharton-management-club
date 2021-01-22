@@ -209,3 +209,12 @@ a.memberbutton{
     display: block;
   }
 }
+
+.grid {
+  margin:0 auto;
+}
+
+.grid-item {
+  width: 200px;
+  margin-bottom: 10px;
+}
